@@ -66,15 +66,17 @@ public class GradeXMLFile {
         }
     }
 
-    // public void removeGradeEntry(String course) {
-    //     Element grades = doc.getDocumentElement();
-    //     Element grade = findGradeElementByCourse(course);
+    public void removeGradeEntry(String course) {
+        Element grades = doc.getDocumentElement();
+        Element grade = findGradeElementByCourse(course);
+        String deleteCourse = course;
 
-    //     if (grade != null) {
-    //         grades.removeChild(grade);
-    //         saveChanges();
-    //     }
-    // }
+        if (grade != null) {
+            grades.removeChild(grade);
+            saveChanges();
+            System.out.println("You've successfully delete " + deleteCourse);
+        }
+    }
 
     public void saveChanges() {
         try {
@@ -133,7 +135,7 @@ public class GradeXMLFile {
             System.out.println("IT 120 Activity");
             System.out.println("[1] Add course and grade to XML File");
             System.out.println("[2] Edit Grade in XML File");
-            System.out.println("[3] Delete data from XML");
+            System.out.println("[3] Delete Grade in XML File");
             System.out.println("[0] Exit");
             System.out.print("Enter your choice: ");
             choice = input.nextInt();
@@ -186,7 +188,21 @@ public class GradeXMLFile {
                 case 3:
                     // Add code for deleting data here
                     // Uncomment the case, and implement the delete functionality
-        
+                    String deleteMore = "y";
+                    do{
+                        gradeXML.clearConsole();
+                        System.out.println("Delete your grade here");
+                        System.out.print("Enter the course you want to delete: ");
+                        inputCourse = input.nextLine();
+
+                        gradeXML.removeGradeEntry(inputCourse);
+
+                        System.out.print("Do you want to edit your grade in other course? [y/n] ");
+                        editMore = input.nextLine();
+
+                    }while(deleteMore.equals("y"));
+
+                    gradeXML.clearConsole();
                     break;
         
                 case 0:
