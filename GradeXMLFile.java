@@ -57,11 +57,12 @@ public class GradeXMLFile {
 
     public void editGradeEntry(String course, String newGrade) {
         Element grade = findGradeElementByCourse(course);
-
+        String editCourse = course;
         if (grade != null) {
             Element gradeValue = (Element) grade.getElementsByTagName("grades").item(0);
             gradeValue.setTextContent(newGrade);
             saveChanges();
+            System.out.println("You've successfully edit your grade in " + editCourse);
         }
     }
 
@@ -125,6 +126,8 @@ public class GradeXMLFile {
         String inputCourse;
         String inputGrade;
         int choice;
+
+        gradeXML.clearConsole();
         
         do {
             System.out.println("IT 120 Activity");
@@ -141,7 +144,7 @@ public class GradeXMLFile {
                     String addMore = "y";
                     do {
                         gradeXML.clearConsole();
-                        System.out.println("Add data to XML File here:");
+                        System.out.println("Add data to XML File here");
                         System.out.print("Course: ");
                         inputCourse = input.nextLine();
         
@@ -150,7 +153,7 @@ public class GradeXMLFile {
         
                         gradeXML.addGradeEntry(inputCourse, inputGrade);
         
-                        System.out.println("Do you want to add more data? [y/n]");
+                        System.out.println("Do you want to add more data? [y/n] ");
                         addMore = input.nextLine();
                     } while (addMore.equals("y"));
 
@@ -163,7 +166,7 @@ public class GradeXMLFile {
                     String editMore = "y";
                     do{
                         gradeXML.clearConsole();
-                        System.out.println("Edit your grade here:");
+                        System.out.println("Edit your grade here");
                         System.out.print("Enter the course you want to edit: ");
                         inputCourse = input.nextLine();
 
@@ -172,7 +175,7 @@ public class GradeXMLFile {
 
                         gradeXML.editGradeEntry(inputCourse, inputGrade);
 
-                        System.out.print("Do you want to edit your grade in other course? [y/n]");
+                        System.out.print("Do you want to edit your grade in other course? [y/n] ");
                         editMore = input.nextLine();
 
                     }while(editMore.equals("y"));
