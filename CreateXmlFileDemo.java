@@ -57,7 +57,7 @@ public class CreateXmlFileDemo {
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(javax.xml.transform.OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("C:\\Users\\cabod\\OneDrive\\Desktop\\120\\cars.xml"));
+            StreamResult result = new StreamResult(new File("xml\\cars.xml"));
             transformer.transform(source, result);
 
             // Output to console for testing
