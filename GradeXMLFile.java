@@ -1,7 +1,5 @@
 import java.io.File;
 import java.util.Scanner; 
-// import java.util.ArrayList;
-// import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -21,7 +19,6 @@ public class GradeXMLFile {
         initializeXmlDocument();
     }
 
-    //initializing xml file in order to create a xml
     private void initializeXmlDocument() {
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -41,7 +38,6 @@ public class GradeXMLFile {
         }
     }
 
-    //adding a data to a xml file
     public void addGradeEntry(String course, String grade) {
         Element gradeElement = doc.createElement("grade");
         Element courseElement = doc.createElement("course");
@@ -57,7 +53,6 @@ public class GradeXMLFile {
         System.out.println("You've successfully add the data");
     }
 
-    //editing the grade of the specific course
     public void editGradeEntry(String course, String newGrade) {
         Element grade = findGradeElementByCourse(course);
         String editCourse = course;
@@ -70,7 +65,6 @@ public class GradeXMLFile {
         }
     }
 
-    //deleting the grade in xml file
     public void removeGradeEntry(String course) {
         Element grades = doc.getDocumentElement();
         Element grade = findGradeElementByCourse(course);
@@ -108,7 +102,6 @@ public class GradeXMLFile {
         return null;
     }
     
-    //clear the console
     public void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
@@ -122,14 +115,13 @@ public class GradeXMLFile {
                 System.out.flush();
             }
         } catch (final Exception e) {
-            // Handle exceptions
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String xmlFilePath = "C:\\Users\\cabod\\OneDrive\\Desktop\\120\\grades.xml";
+        String xmlFilePath = "xml\\grades.xml";
         GradeXMLFile gradeXML = new GradeXMLFile(xmlFilePath);
         String inputCourse;
         String inputGrade;
@@ -145,7 +137,7 @@ public class GradeXMLFile {
             System.out.println("[0] Exit");
             System.out.print("Enter your choice: ");
             choice = input.nextInt();
-            input.nextLine(); // Consume the newline character
+            input.nextLine(); 
         
             switch (choice) {
                 case 1:
@@ -169,8 +161,6 @@ public class GradeXMLFile {
                     break;
         
                 case 2:
-                    // Add code for editing data here
-                    // Uncomment the case, and implement the edit functionality
                     String editMore = "y";
                     do{
                         gradeXML.clearConsole();
@@ -192,8 +182,6 @@ public class GradeXMLFile {
                     break;
         
                 case 3:
-                    // Add code for deleting data here
-                    // Uncomment the case, and implement the delete functionality
                     String deleteMore = "y";
                     do{
                         gradeXML.clearConsole();
@@ -220,7 +208,7 @@ public class GradeXMLFile {
             }
         } while (choice != 0);
         
-        input.close(); // Close the scanner outside the loop
+        input.close();
         
 
     }
