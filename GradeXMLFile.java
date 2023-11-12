@@ -21,6 +21,7 @@ public class GradeXMLFile {
         initializeXmlDocument();
     }
 
+    //initializing xml file in order to create a xml
     private void initializeXmlDocument() {
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -40,6 +41,7 @@ public class GradeXMLFile {
         }
     }
 
+    //adding a data to a xml file
     public void addGradeEntry(String course, String grade) {
         Element gradeElement = doc.createElement("grade");
         Element courseElement = doc.createElement("course");
@@ -55,9 +57,11 @@ public class GradeXMLFile {
         System.out.println("You've successfully add the data");
     }
 
+    //editing the grade of the specific course
     public void editGradeEntry(String course, String newGrade) {
         Element grade = findGradeElementByCourse(course);
         String editCourse = course;
+
         if (grade != null) {
             Element gradeValue = (Element) grade.getElementsByTagName("grades").item(0);
             gradeValue.setTextContent(newGrade);
@@ -66,6 +70,7 @@ public class GradeXMLFile {
         }
     }
 
+    //deleting the grade in xml file
     public void removeGradeEntry(String course) {
         Element grades = doc.getDocumentElement();
         Element grade = findGradeElementByCourse(course);
@@ -103,6 +108,7 @@ public class GradeXMLFile {
         return null;
     }
     
+    //clear the console
     public void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
