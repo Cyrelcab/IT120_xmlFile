@@ -56,25 +56,24 @@ public class GradeXMLFile {
     }
 
     public void editGradeEntry(String course, String newGrade) {
-        Element grades = doc.getDocumentElement();
         Element grade = findGradeElementByCourse(course);
 
         if (grade != null) {
-            Element gradeValue = (Element) grade.getElementsByTagName("value").item(0);
+            Element gradeValue = (Element) grade.getElementsByTagName("grades").item(0);
             gradeValue.setTextContent(newGrade);
             saveChanges();
         }
     }
 
-    public void removeGradeEntry(String course) {
-        Element grades = doc.getDocumentElement();
-        Element grade = findGradeElementByCourse(course);
+    // public void removeGradeEntry(String course) {
+    //     Element grades = doc.getDocumentElement();
+    //     Element grade = findGradeElementByCourse(course);
 
-        if (grade != null) {
-            grades.removeChild(grade);
-            saveChanges();
-        }
-    }
+    //     if (grade != null) {
+    //         grades.removeChild(grade);
+    //         saveChanges();
+    //     }
+    // }
 
     public void saveChanges() {
         try {
